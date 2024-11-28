@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Ventana de Registro</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="id_nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="id_nombre" name="nombre" maxlength="30">
+            <label for="id_rut" class="form-label">Rut</label>
+            <input type="text" class="form-control" name="rut" maxlength="15" required id="id_rut">
+            <label for="id_contraseña" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="contraseña" maxlength="20" required id="id_contraseña">
+        </div>
+        {% csrf_token %}
+        <input type="submit" value="Agregar Administrador" class="btn btn-info">
+    </form>
+{% endblock %}

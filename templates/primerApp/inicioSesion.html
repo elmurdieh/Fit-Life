@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Vetana de Inicio de Sesion</h1>
+{% if messages %}
+{% for message in messages %}
+  <div class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+  <label for="rut">Nombre de Usuario</label>
+  <input type="text" name="rut" id="rut" class="form-control">
+  <label for="contraseña">Contraseña</label>
+  <input type="password" name="contraseña" id="contraseña" class="form-control">
+  <input type="submit" value="Iniciar Sesión" class="btn btn-primary mt-3">
+</form>
+{% endblock %}

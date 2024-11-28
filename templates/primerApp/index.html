@@ -1,0 +1,60 @@
+{% extends "../base.html" %}
+
+{% block content %}
+{% load static %}
+    <div class="container py-5">
+
+        <!-- Anuncio Seccion -->
+        <div class="bg-card text-card-foreground p-4 rounded mb-4">
+            <img src="{% static 'img/banner.jpg' %}" alt="Advertisement" class="img-fluid rounded mb-3">
+            <h2 style="color: #f2584a;">Mira Nuestras ultimas clases y productos!!!</h2>
+        </div>
+
+        <!-- Cursos Seccion -->
+        <div class="row g-4">
+            {% for claseGrupal in clasesGrupales %}
+            <div class="col-md-4">
+                <div class="card bg-card text-card-foreground" style="border: solid 2px;border-color: #f2584a;">
+                    <img src="{{ claseGrupal.imgCG.url }}" class="card-img-top" alt="Course" style="width: 100%; height: 190px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ claseGrupal.nombre }}</h5>
+                        <!-- Limitar texto a 25 caracteres -->
+                        <p class="card-text">
+                            {{ claseGrupal.descripcion|slice:":25" }}{% if claseGrupal.descripcion|length > 25 %}...{% endif %}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Botón "Ver Más" a la izquierda -->
+                            <a href="/clase_grupal/{{ claseGrupal.id }}" class="btn btn-primary-custom text-primary-foreground">Ver Más</a>
+                            <!-- Botón deshabilitado a la derecha -->
+                            <button class="btn btn-success" disabled>{{ claseGrupal.precio }} clps</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Products Section -->
+        <div class="row g-4 mt-4">
+            {% for producto in productos %}
+            <div class="col-md-4">
+                <div class="card bg-card text-card-foreground" style="border: solid 2px;border-color: #f2584a;">
+                    <img src="{{ producto.imgPro.url }}" class="card-img-top" alt="Product" style="width: 100%; height: 190px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                        <p class="card-text">
+                            {{ producto.descripcion|slice:":25" }}{% if producto.descripcion|length > 25 %}...{% endif %}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Botón "Ver Más" a la izquierda -->
+                            <a href="#" class="btn btn-primary-custom text-primary-foreground">Ver Más</a>
+                            <!-- Botón deshabilitado a la derecha -->
+                            <button class="btn btn-success" disabled>{{ producto.precio }} clps</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

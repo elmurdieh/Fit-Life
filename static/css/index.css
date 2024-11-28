@@ -1,0 +1,12 @@
+.bg-primary-custom {
+    background-color: #063a5a; /* Color primario personalizado */
+}
+.text-primary-foreground {
+    color: #ffa24a; /* Color de texto primario */
+}
+.bg-card {
+    background-color: #f8f9fa; /* Fondo de las cards */
+}
+.text-card-foreground {
+    color: #212529; /* Color de texto para las cards */
+}

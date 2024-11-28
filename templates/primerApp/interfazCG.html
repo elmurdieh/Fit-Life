@@ -1,0 +1,132 @@
+{% extends "../base.html" %}
+
+{% block content %}
+{% load static %}
+<div class="container my-5">
+    <div class="row equal-height">
+      <!-- Imagen e información del título -->
+      <div class="col-md-8 d-flex align-items-center">
+        <div class="card text-bg-dark">
+            <img src="{{ clase.imgCG.url }}" class="card-img" alt="...">
+            <div class="card-img-overlay">
+              <h1 class="card-title">{{clase.nombre}}</h1>
+            </div>
+          </div>
+      </div>
+
+      <!-- Tarjeta del profesor -->
+      <div class="col-md-4">
+        <div class="card shadow card-full-height">
+          <div class="card-body text-center">
+            <img src="{{ entrenador.imgReferencia.url }}" alt="Perfil" class="rounded-circle mb-3" style="height: 100%; width: 150px;">
+            <h5 class="card-title">{{ entrenador.nombre }}</h5>
+            <p class="text-muted">Entrenador de Fit Life desde {{entrenador.fechaIngreso}}</p>
+            <h3 class="fw-bold text-primary">{{ clase.precio}} clps</h3>
+            <p><strong>Tiempo de respuesta:</strong> 1h</p>
+            <a href="#" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#modalInscripcion">Realizar Inscripcion</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detalles del perfil -->
+    <div class="row mt-4">
+      <div class="col-md-8">
+        <h4>Descripcion de la Clase</h4>
+        <p>{{ clase.descripcion}}</p>
+        <h4>Informacion de la Clase</h4>
+        <ul class="list-unstyled">
+          <li>Empieza desde el <i class="btn btn-success disabled">{{ clase.fecha_Inicio }}</i> hasta <i class="btn btn-success disabled">{{ clase.fecha_Fin}}</i></li>
+          <li>Desde las <i class="btn btn-success disabled">{{ clase.hora_inicio }}</i> hasta <i class="btn btn-success disabled">{{ clase.hora_fin }}</i></li>
+          <li>tomara lugar en <i class="fs-4">{{clase.lugar}}</i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalInscripcion" tabindex="-1" aria-labelledby="modalInscripcion" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalInscripcion">Inscripcion {{ clase.nombre}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_nombre_Completo" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="id_nombre_Completo" name="nombreCompleto" maxlength="100" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_rut" class="form-label">Rut</label>
+                        <input type="text" class="form-control" id="id_rut" name="rut" maxlength="12" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="id_edad" name="edad" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_genero" class="form-label">Genero</label>
+                        <select id="id_genero" class="form-select" name="genero" required>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="O">Otro</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_correoElectronico" class="form-label">Correo Electronico</label>
+                        <input type="email" class="form-control" id="id_correoElectronico" name="correoElectronico" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_telefono" class="form-label">Numero de Telefono</label>
+                        <input type="text" class="form-control" id="id_telefono" name="telefono" required maxlength="12">
+                    </div>
+                    <div>
+                        <label for="id_condicionMedica">condiciones medicas</label>
+                        <textarea name="condicionMedica" id="id_condicionMedica" placeholder="En caso de no tener ninguna puedes dejar el espacio en blanco" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_contactoEmergenciaNombre" class="form-label">Nombre del contacto de Emergencia</label>
+                        <input type="text" class="form-control" id="id_contactoEmergenciaNombre" name="contactoEmergenciaNombre" maxlength="100" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_contactoEmergenciaTelefono" class="form-label">En caso de Emergencia llamar a</label>
+                        <input type="text" class="form-control" id="id_contactoEmergenciaTelefono" name="contactoEmergenciaTelefono" maxlength="12" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="id_acepta_reglamento" name="acepta_reglamento">
+                        <label class="form-check-label" for="exampleCheck1">Acepto el reglamento</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="id_acepta_uso_imagen" name="acepta_uso_imagen">
+                        <label class="form-check-label" for="exampleCheck1">Acepto el Uso de mi imagen por parte de Fit Life</label>
+                    </div>
+                    <div>
+                        <input type="datetime-local" id="id_fechaSolicitud" class="form-label" name="fechaSolicitud">
+                    </div>
+                    <div>
+                        <input type="number" class="form-label" id="id_CG" name="CG" value="{{ clase.id }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="submit_solicitudClaseG" value="submit_solicitudClaseG">Enviar Solicitud</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Obtener la fecha y hora actual en formato ISO
+    const now = new Date();
+    
+    // Formatear la fecha en el formato correcto: YYYY-MM-DDTHH:MM
+    const formattedDate = now.toISOString().slice(0, 16); // Obtener hasta minutos (sin los segundos)
+
+    // Asignar la fecha al campo oculto fechaSolicitud
+    const fechaSolicitudInput = document.getElementById('id_fechaSolicitud');
+    if (fechaSolicitudInput) {
+        fechaSolicitudInput.value = formattedDate;
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "baseAdministrador.html" %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4" style="font-size: 2rem;">Gestión de Usuarios</h2>
+
+    <!-- Tabla centrada -->
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped text-center" style="font-size: 1.25rem;">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Ver Datos</th>
+                        <th>Fecha de Ingreso</th>
+                        <th>Aceptar Solicitud</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Fila 1 -->
+                    <tr>
+                        <td>Juan Pérez</td>
+                        <td><a href="#" class="btn btn-info btn-lg">Ver Datos</a></td>
+                        <td>2023-01-15</td>
+                        <td><a href="#" class="btn btn-success btn-lg">Aceptar Solicitud</a></td>
+                    </tr>
+                    <!-- Fila 2 -->
+                    <tr>
+                        <td>Ana Gómez</td>
+                        <td><a href="#" class="btn btn-info btn-lg">Ver Datos</a></td>
+                        <td>2023-02-20</td>
+                        <td><a href="#" class="btn btn-success btn-lg">Aceptar Solicitud</a></td>
+                    </tr>
+                    <!-- Fila 3 -->
+                    <tr>
+                        <td>Pedro Rodríguez</td>
+                        <td><a href="#" class="btn btn-info btn-lg">Ver Datos</a></td>
+                        <td>2023-03-12</td>
+                        <td><a href="#" class="btn btn-success btn-lg">Aceptar Solicitud</a></td>
+                    </tr>
+                    <!-- Fila 4 -->
+                    <tr>
+                        <td>Lucía Fernández</td>
+                        <td><a href="#" class="btn btn-info btn-lg">Ver Datos</a></td>
+                        <td>2023-04-08</td>
+                        <td><a href="#" class="btn btn-success btn-lg">Aceptar Solicitud</a></td>
+                    </tr>
+                    <!-- Fila 5 -->
+                    <tr>
+                        <td>José Martínez</td>
+                        <td><a href="#" class="btn btn-info btn-lg">Ver Datos</a></td>
+                        <td>2023-05-22</td>
+                        <td><a href="#" class="btn btn-success btn-lg">Aceptar Solicitud</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
