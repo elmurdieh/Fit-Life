@@ -1,12 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Vetana de Inicio de Sesion</h1>
-{% if messages %}
-{% for message in messages %}
-  <div class="alert alert-danger">{{ message }}</div>
-{% endfor %}
-{% endif %}
+
 
 <form method="POST">
   {% csrf_token %}

@@ -31,5 +31,11 @@ urlpatterns = [
     path('actualizar_equipo/<str:rut>/', views1.actualizarEquipo, name='actualizarEquipo'),
     path('eliminar_equipo/<str:rut>/', views1.eliminarEquipo, name='eliminarEquipo'),
     path('clase_grupal/<int:id>/', views1.interfazCG, name='interfaz_CG'),
-    path('administrar2/<str:rut>/', views1.ventanaAdministrador2, name='ventanaAdministrador2')
+    path('administrar2/<str:rut>/', views1.ventanaAdministrador2, name='ventanaAdministrador2'),
+    path('aprobar/<int:id>/', views1.aprobar_solicitud, name='aprobar_solicitud'),
+    path('rechazar/<int:id>/', views1.rechazar_solicitud, name='rechazar_solicitud'),
+    path('bancoWeb/<int:id>/', views1.pagarServicio, name="bancoEnLinea"),
+    path('procesar_pago/<int:id>/', views1.procesar_pago, name='procesar_pago'),
+    path('cancelar_solicitud/', views1.cancelar_solicitud, name='cancelar_solicitud'),
+    path('eliminar_solicitud/<int:id>/', views1.eliminar_solicitud, name='eliminar_solicitud'),
 ]

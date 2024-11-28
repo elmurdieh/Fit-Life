@@ -1,5 +1,5 @@
 from django import forms
-from primerApp.models import administrador, solicitudCG, claseGrupal, equipo, producto
+from primerApp.models import administrador, solicitudCG, claseGrupal, equipo, producto, cliente, integra
 
 class formAdministrador(forms.ModelForm):
     class Meta:
@@ -28,4 +28,14 @@ class formProducto(forms.ModelForm):
 class formCG(forms.ModelForm):
     class Meta:
         model = solicitudCG
+        fields = '__all__'
+
+class clienteForm(forms.ModelForm):
+    class Meta:
+        model = cliente
+        fields = '__all__'
+
+class integraForm(forms.ModelForm):
+    class Meta:
+        model = integra
         fields = '__all__'

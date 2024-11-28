@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz de Pago</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bancoWeb.css' %}">
+</head>
+<body>
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- Sección de Pedido -->
+        <div class="col-md-6">
+            <div class="p-4 bg-card rounded-lg shadow-sm">
+                <h2 class="h5">Tu pedido</h2>
+                <div class="p-3 bg-muted rounded-lg d-flex align-items-center mb-3">
+                    <img src="{{ solicitud.CG.imgCG.url }}" alt="Lite Plan" class="me-2" style="height: 50px; width: auto;" />
+                    <div>
+                        <h3 class="h6 mb-0">Clases Grupales de {{ solicitud.CG.nombre}}</h3>
+                        <p class="mb-0 small">Desde el {{solicitud.CG.fecha_Inicio}} hasta el {{ solicitud.CG.fecha_Fin}}</p>
+                    </div>
+                </div>
+                <ul class="list-unstyled">
+                    <li class="d-flex align-items-center mb-2">
+                        <span class="text-muted-foreground me-2">✔️</span> Pago único
+                    </li>
+                    <li class="d-flex align-items-center mb-2">
+                        <span class="text-muted-foreground me-2">✔️</span> Garantía de reembolso
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <span class="text-muted-foreground me-2">✔️</span> Soporte gratuito
+                    </li>
+                </ul>
+                <a href="#" class="text-primary text-decoration-underline">¿Tienes un cupón?</a>
+                <div class="d-flex justify-content-between font-weight-bold mt-4">
+                    <span>Total</span>
+                    <span>{{solicitud.CG.precio}} clps</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección de Detalles de Pago -->
+        <div class="col-md-6">
+            <div class="p-4 bg-card rounded-lg shadow-sm">
+                <h2 class="h5">Detalles de pago</h2>
+                <button class="btn btn-primary" style="background-color: rgb(255, 255, 255); margin: solid 2px; width: 100%;">
+                    <img src="{% static 'img/paypal.png' %}" alt="Pago con PayPal" style="height: 30px; width: auto;">
+                </button>
+                <div class="text-center my-3">
+                    <span class="fw-semibold">O</span>
+                </div>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <button class="btn btn-custom w-100">Tarjeta</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-custom w-100">Banco</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-custom w-100">Pago por Cash App</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-custom w-100">Pago por WeChat</button>
+                    </div>
+                </div>
+                <div class="my-4">
+                    <label for="cardNumber" class="form-label">Número de tarjeta</label>
+                    <input type="text" id="cardNumber" class="form-control" placeholder="1234 1234 1234 1234" required/>
+                </div>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <label for="expDate" class="form-label">Fecha de expiración</label>
+                        <input type="text" id="expDate" class="form-control" placeholder="MM / AA" required/>
+                    </div>
+                    <div class="col-6">
+                        <label for="cvc" class="form-label">Código de seguridad</label>
+                        <input type="text" id="cvc" class="form-control" placeholder="CVC" required/>
+                    </div>
+                </div>
+                <form method="post" action="{% url 'procesar_pago' solicitud.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="pago_exitoso" value="true">
+                    <button class="btn btn-primary w-100 mt-5" id="payButton">Pagar {{solicitud.CG.precio}} clps</button>
+                </form>
+                <p class="text-muted text-center small mt-2">Protegido por encriptación SSL de 256 bits</p>
+            </div>
+            <div class="container py-5">
+    <div class="row g-4">
+        <!-- Sección de mensajes -->
+        {% if messages %}
+        <div class="col-12">
+            {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

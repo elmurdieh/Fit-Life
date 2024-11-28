@@ -1,0 +1,109 @@
+{% for solicitudCG in solicitudesCG %}
+<div class="modal fade" id="modalEliminarSolicitudCG{{ solicitudCG.id }}" tabindex="-1" aria-labelledby="modalEliminarSolicitudCG{{ solicitudCG.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Encabezado en rojo -->
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Confirmar eliminación</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Cuerpo del modal -->
+            <div class="modal-body">
+                ¿Estás seguro de Rechazar la Solicitud a <strong>{{ solicitudCG.nombreCompleto }}</strong>?
+            </div>
+            <!-- Pie del modal -->
+            <div class="modal-footer">
+                <form action="{% url 'rechazar_solicitud' solicitudCG.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">Rechazar Solicitud</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAceptarSolicitudCG{{ solicitudCG.id }}" tabindex="-1" aria-labelledby="modalAceptarSolicitudCG{{ solicitudCG.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Encabezado en verde -->
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Confirmar Solicitud</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Cuerpo del modal -->
+            <div class="modal-body">
+                ¿Estás seguro de Aceptar la Solicitud a <strong>{{ solicitudCG.nombreCompleto }}</strong>?
+            </div>
+            <!-- Pie del modal -->
+            <div class="modal-footer">
+                <form action="{% url 'aprobar_solicitud' solicitudCG.id %}" method="POST">{% csrf_token %}<button class="btn btn-success">Aprobar</button></form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalVerInscripcion{{ solicitud.id}}" tabindex="-1" aria-labelledby="modalVerInscripcion{{solicitudCG.id}}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalInscripcion">Inscripcion a {{ solicitudCG.CG.nombre}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_nombre_Completo" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" value="{{solicitudCG.nombreCompleto}}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_rut" class="form-label">Rut</label>
+                        <input type="text" class="form-control" value="{{solicitudCG.rut}}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" value="{{solicitudCG.edad}}" readonly >
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_genero" class="form-label">Genero</label>
+                        <select id="id_genero" class="form-select" readonly>
+                            <option >{{solicitudCG.genero}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_correoElectronico" class="form-label">Correo Electronico</label>
+                        <input type="email" class="form-control" value="{{solicitudCG.correoElectronico}} readonly">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_telefono" class="form-label">Numero de Telefono</label>
+                        <input type="text" class="form-control" value="{{solicitudCG.telefono}}" readonly>
+                    </div>
+                    <div>
+                        <label for="id_condicionMedica">condiciones medicas</label>
+                        <textarea placeholder="No Tiene" class="form-control" readonly>{{solicitudCG.condicionMedica}}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_contactoEmergenciaNombre" class="form-label">Nombre del contacto de Emergencia</label>
+                        <input type="text" class="form-control" value="{{solicitudCG.contactoEmergenciaNombre}}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_contactoEmergenciaTelefono" class="form-label">En caso de Emergencia llamar a</label>
+                        <input type="text" class="form-control" value="{{solicitudCG.contactoEmergenciaTelefono}}" readonly>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" disabled value="{{solicitudCG.acepta_reglamento}}">
+                        <label class="form-check-label" for="exampleCheck1">Acepto el reglamento</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" disabled value="{{solicitudCG.acepta_uso_imagen}}">
+                        <label class="form-check-label" for="exampleCheck1">Acepto el Uso de mi imagen por parte de Fit Life</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">SALIR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

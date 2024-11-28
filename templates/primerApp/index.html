@@ -8,6 +8,13 @@
         <div class="bg-card text-card-foreground p-4 rounded mb-4">
             <img src="{% static 'img/banner.jpg' %}" alt="Advertisement" class="img-fluid rounded mb-3">
             <h2 style="color: #f2584a;">Mira Nuestras ultimas clases y productos!!!</h2>
+            <div class="bg-card text-card-foreground p-4 rounded mb-4">
+                <form method="GET" action="{% url 'cancelar_solicitud' %}">
+                    {% csrf_token %}
+                    <input type="text" name="codigo" class="form-label" placeholder="Ingresar Código" required>
+                    <button type="submit" class="btn btn-danger">Cancelar Servicio</button>
+                </form>
+            </div>
         </div>
 
         <!-- Cursos Seccion -->

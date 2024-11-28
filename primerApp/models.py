@@ -80,7 +80,8 @@ class integra(models.Model):
     cliente = models.ForeignKey(cliente, on_delete=models.CASCADE, related_name="clases")
     clase_grupal = models.ForeignKey(claseGrupal, on_delete=models.CASCADE, related_name="participantes")
     solicitud = models.OneToOneField(solicitudCG, on_delete=models.SET_NULL, null=True, blank=True)
-    fecha_union = models.DateTimeField(auto_now_add=True)
+    estadoPago = models.BooleanField(default=False)
+    fecha_union = models.DateTimeField()
 
 
 class entrenamientoPersonalizado(models.Model):

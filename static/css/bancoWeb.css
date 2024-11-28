@@ -1,0 +1,25 @@
+body {
+    background-color: #f8f9fa;
+}
+.bg-card {
+    background-color: #ffffff;
+}
+.text-primary {
+    color: #0d6efd !important;
+}
+.text-muted-foreground {
+    color: #6c757d;
+}
+.bg-muted {
+    background-color: #f8f9fa;
+}
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+.btn-custom {
+    background-color: #f8f9fa;
+    color: #000;
+}
+.btn-custom:hover {
+    background-color: #e9ecef;
+}

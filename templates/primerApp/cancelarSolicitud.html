@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+    <h3>¿Estás seguro de cancelar tu solicitud para la clase {{ solicitud.CG.nombre }}?</h3>
+    <p>Una vez cancelada, no podrás acceder a la clase.</p>
+
+    <!-- Formulario para confirmar la cancelación -->
+    <form method="POST" action="{% url 'eliminar_solicitud' solicitud.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar Cancelación</button>
+    </form>
+</div>
+{% endblock %}
