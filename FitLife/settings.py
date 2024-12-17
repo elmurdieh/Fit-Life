@@ -39,8 +39,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'fitlifebot@gmail.com'  # Correo Electronico
-EMAIL_HOST_PASSWORD = 'ggypfebykqxfrtml'  # Contraseña de Aplicacion 
+EMAIL_HOST_USER = ''  # Correo Electronico
+EMAIL_HOST_PASSWORD = ''  # Contraseña de Aplicacion 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Quick-start development settings - unsuitable for production
