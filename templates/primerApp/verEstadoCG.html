@@ -1,0 +1,57 @@
+{% extends "baseAdministrador.html" %}
+{% block content %}
+{% load static %}
+<div class="card mb-4">
+    <div class="card-body d-flex align-items-center">
+        <!-- Imagen del entrenador -->
+        <div class="me-3">
+            <img src="{{ clasesGrupales.entrenador.imgReferencia.url }}" alt="Foto del Entrenador" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+        </div>
+        <!-- Información del entrenador -->
+        <div>
+            <h4 class="mb-1">Entrenador: {{ clasesGrupales.entrenador.nombre }}</h4>
+            <p class="mb-0">RUT: {{ clasesGrupales.entrenador.rut }}</p>
+            <p class="mb-0">Rol: {{ clasesGrupales.entrenador.rol }}</p>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h2>Integrantes de {{ clasesGrupales.nombre }}</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre Completo</th>
+                <th scope="col">Rut</th>
+                <th scope="col">Estado Pago</th>
+                <th scope="col">En caso de Emergencia Llamar a</th>
+                <th scope="col">Fecha de Ingreso</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for integrante in integrantes %}
+                <tr>
+                    <th scope="row">{{ integrante.id }}</th>
+                    <td>{{ integrante.nombreCompleto }}</td>
+                    <td>{{ integrante.rut }}</td>
+                    <td>
+                        {% if integrante.estadoPago %}
+                        <button class="btn btn-success w-100" disabled>Pagado</button>
+                        {% else %}
+                        <button class="btn btn-danger w-100" disabled>No Pagado</button>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-danger" disabled>
+                            {{ integrante.contactoEmergenciaTelefono }}
+                        </button>
+                    </td>
+                    <td>{{ integrante.fecha_union }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+{% endblock %}

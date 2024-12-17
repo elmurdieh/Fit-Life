@@ -38,4 +38,7 @@ urlpatterns = [
     path('procesar_pago/<int:id>/', views1.procesar_pago, name='procesar_pago'),
     path('cancelar_solicitud/', views1.cancelar_solicitud, name='cancelar_solicitud'),
     path('eliminar_solicitud/<int:id>/', views1.eliminar_solicitud, name='eliminar_solicitud'),
+    path('administrar2/<str:rut>/<int:id>/', views1.verClaseGrupal, name="verClaseGrupal"),
 ]
+handler404 = 'primerApp.views.error_404'
+handler500 = 'primerApp.views.error_500'

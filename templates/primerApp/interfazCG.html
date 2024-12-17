@@ -20,10 +20,18 @@
           <div class="card-body text-center">
             <img src="{{ entrenador.imgReferencia.url }}" alt="Perfil" class="rounded-circle mb-3" style="height: 100%; width: 150px;">
             <h5 class="card-title">{{ entrenador.nombre }}</h5>
+            <p class="card-title">Entrenador</p>
             <p class="text-muted">Entrenador de Fit Life desde {{entrenador.fechaIngreso}}</p>
             <h3 class="fw-bold text-primary">{{ clase.precio}} clps</h3>
             <p><strong>Tiempo de respuesta:</strong> 1h</p>
-            <a href="#" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#modalInscripcion">Realizar Inscripcion</a>
+            <a href="#" 
+            class="btn {% if clase.estatus_llenado %}btn-danger disabled{% else %}btn-primary{% endif %} w-100"
+            {% if clase.estatus_llenado %} 
+                >Máximo de Integrantes Alcanzados
+            {% else %}
+                data-bs-toggle="modal" data-bs-target="#modalInscripcion">Realizar Inscripción
+            {% endif %}
+         </a>
           </div>
         </div>
       </div>

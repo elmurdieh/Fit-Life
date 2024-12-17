@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>SOLO PARA TRABAJADORES DE FIT LIFE</h1>
+<div class="card" style="width: 250px;">
+  <div class="card-body">
+    <form method="POST">
+      {% csrf_token %}
+      <label for="rut">Nombre de Usuario</label>
+      <input type="text" name="rut" id="rut" class="form-control" {% if blocked %}disabled{% endif %}>
+      <label for="contraseña">Contraseña</label>
+      <input type="password" name="contraseña" id="contraseña" class="form-control" {% if blocked %}disabled{% endif %}>
+      <input type="submit" value="Iniciar Sesión" class="btn btn-primary mt-3" {% if blocked %}disabled{% endif %}>
+    </form>
+    {% if blocked %}
+    <div class="alert alert-danger mt-3">
+      El inicio de sesión está bloqueado temporalmente. Intente de nuevo más tarde.
+    </div>
+    {% endif %}
+  </div>
+</div>
 
-
-<form method="POST">
-  {% csrf_token %}
-  <label for="rut">Nombre de Usuario</label>
-  <input type="text" name="rut" id="rut" class="form-control">
-  <label for="contraseña">Contraseña</label>
-  <input type="password" name="contraseña" id="contraseña" class="form-control">
-  <input type="submit" value="Iniciar Sesión" class="btn btn-primary mt-3">
-</form>
 {% endblock %}

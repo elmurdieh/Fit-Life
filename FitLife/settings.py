@@ -29,14 +29,18 @@ USE_TZ = True
 
 LOGIN_URL = '/inicio_de_Sesion'
 
+AES_SECRET_KEY = b'SeguridadAESClave32Bytes12345678'  # Exactamente 32 bytes
+
+
+
 
 # Configuración para enviar correos a través de Gmail
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ''  # Correo Electronico
-EMAIL_HOST_PASSWORD = ''  # Contraseña de Aplicacion 
+EMAIL_HOST_USER = 'fitlifebot@gmail.com'  # Correo Electronico
+EMAIL_HOST_PASSWORD = 'ggypfebykqxfrtml'  # Contraseña de Aplicacion 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Quick-start development settings - unsuitable for production
